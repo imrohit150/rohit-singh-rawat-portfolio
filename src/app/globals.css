@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Color tokens ("r g b"). Edit these to restyle the whole site.
+  Dark is the default. The inline script in layout.tsx sets data-theme before paint.
+*/
+:root,
+:root[data-theme='dark'] {
+  --bg: 17 18 16;
+  --surface: 28 26 23;
+  --tile-surface: 28 26 23;
+  --line: 46 43 38;
+  --ink: 240 236 229;
+  --muted: 168 160 152;
+  --accent: 116 198 157;
+  --on-accent: 17 18 16;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: 255 245 232;
+  --surface: 239 226 207;
+  --tile-surface: 239 226 207;
+  --line: 222 211 198;
+  --ink: 26 23 20;
+  --muted: 154 144 136;
+  --accent: 45 106 79;
+  --on-accent: 255 255 255;
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.3);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .hero-atmosphere,
+  .gradient-band {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .hero-atmosphere::before,
+  .hero-atmosphere::after,
+  .gradient-band::before {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    content: '';
+    border-radius: 9999px;
+    filter: blur(8px);
+  }
+
+  .hero-atmosphere::before {
+    top: -18rem;
+    right: -12rem;
+    width: 44rem;
+    height: 44rem;
+    background: radial-gradient(circle, rgb(var(--accent) / 0.14) 0%, rgb(var(--accent) / 0) 68%);
+    animation: ambient-drift 12s ease-in-out infinite;
+  }
+
+  .hero-atmosphere::after {
+    bottom: -22rem;
+    left: -16rem;
+    width: 38rem;
+    height: 38rem;
+    background: radial-gradient(circle, rgb(var(--accent) / 0.08) 0%, rgb(var(--accent) / 0) 70%);
+    animation: ambient-drift 15s 2s ease-in-out infinite reverse;
+  }
+
+  .gradient-band::before {
+    top: -18rem;
+    left: 42%;
+    width: 34rem;
+    height: 34rem;
+    background: radial-gradient(circle, rgb(var(--accent) / 0.055) 0%, rgb(var(--accent) / 0) 70%);
+  }
+}
+
+@keyframes ambient-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, 1rem, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-atmosphere::before,
+  .hero-atmosphere::after {
+    animation: none;
+  }
+}
+
+/* Theme switch: the new theme is revealed as a circle (see ThemeProvider.tsx). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
