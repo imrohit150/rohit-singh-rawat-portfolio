@@ -88,15 +88,15 @@ export function Navbar() {
       </Container>
 
       <AnimatePresence>
-        {open ? (
+        {open && (
           <motion.nav
             id="mobile-menu"
             aria-label="Mobile"
-            initial={{ height: 0 }}
-            animate={{ height: 'auto' }}
-            exit={{ height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-line bg-bg md:hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="border-t border-line bg-bg md:hidden"
           >
             <Container>
               <ul className="py-3">
@@ -114,7 +114,7 @@ export function Navbar() {
               </ul>
             </Container>
           </motion.nav>
-        ) : null}
+        )}
       </AnimatePresence>
     </header>
   );

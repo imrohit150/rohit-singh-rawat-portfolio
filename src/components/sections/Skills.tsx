@@ -23,7 +23,6 @@ export function Skills() {
             <Reveal
               key={group.title}
               direction={index % 2 === 0 ? 'left' : 'right'}
-              compactDirection="zoom"
               delay={index * 0.08}
             >
               <TiltCard>

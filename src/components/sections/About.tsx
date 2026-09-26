@@ -7,7 +7,7 @@ export function About() {
   return (
     <Section id="about" className="gradient-band border-y border-line bg-surface/35">
       <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-16">
-        <Reveal direction="left" compactDirection="zoom">
+        <Reveal direction="left">
           <SectionHeading
             eyebrow="About me"
             title={
@@ -18,7 +18,7 @@ export function About() {
             }
           />
         </Reveal>
-        <Reveal direction="right" compactDirection="zoom" delay={0.12}>
+        <Reveal direction="right" delay={0.12}>
           <div>
           <div className="max-w-prose space-y-5 text-lg leading-relaxed text-ink/90">
             {profile.about.map((paragraph) => (

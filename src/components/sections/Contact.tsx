@@ -9,7 +9,7 @@ export function Contact() {
   return (
     <Section id="contact" className="border-t border-line bg-surface/35">
       <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] md:gap-16">
-        <Reveal direction="left" compactDirection="zoom">
+        <Reveal direction="left">
           <div>
           <SectionHeading
             eyebrow="Let&apos;s talk"
@@ -24,7 +24,7 @@ export function Contact() {
           <SocialLinks variant="labeled" className="mt-6" />
           </div>
         </Reveal>
-        <Reveal direction="right" compactDirection="zoom" delay={0.12}>
+        <Reveal direction="right" delay={0.12}>
           <ContactForm />
         </Reveal>
       </div>
