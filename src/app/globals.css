@@ -6,6 +6,10 @@
   Color tokens ("r g b"). Edit these to restyle the whole site.
   Dark is the default. The inline script in layout.tsx sets data-theme before paint.
 */
+:root {
+  --header-height: 4rem;
+}
+
 :root,
 :root[data-theme='dark'] {
   --bg: 17 18 16;
@@ -25,7 +29,7 @@
   --tile-surface: 239 226 207;
   --line: 222 211 198;
   --ink: 26 23 20;
-  --muted: 154 144 136;
+  --muted: 101 92 83;
   --accent: 45 106 79;
   --on-accent: 255 255 255;
   color-scheme: light;
@@ -34,6 +38,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
     overflow-x: clip;
   }
 
@@ -48,6 +53,12 @@
   :focus-visible {
     outline: 2px solid rgb(var(--accent));
     outline-offset: 3px;
+  }
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-height: 4.25rem;
   }
 }
 
@@ -76,7 +87,6 @@
     width: 44rem;
     height: 44rem;
     background: radial-gradient(circle, rgb(var(--accent) / 0.14) 0%, rgb(var(--accent) / 0) 68%);
-    animation: ambient-drift 12s ease-in-out infinite;
   }
 
   .hero-atmosphere::after {
@@ -85,7 +95,6 @@
     width: 38rem;
     height: 38rem;
     background: radial-gradient(circle, rgb(var(--accent) / 0.08) 0%, rgb(var(--accent) / 0) 70%);
-    animation: ambient-drift 15s 2s ease-in-out infinite reverse;
   }
 
   .gradient-band::before {
@@ -97,25 +106,17 @@
   }
 }
 
-@keyframes ambient-drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate3d(0, 1rem, 0) scale(1.04);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .hero-atmosphere::before,
-  .hero-atmosphere::after {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

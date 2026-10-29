@@ -10,7 +10,7 @@ import { profile } from '@/data/profile';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { easeOutExpo } from '@/lib/animations';
 
-// three.js only loads in the browser, so it never slows down the first paint.
+// Load the decorative Three.js scene only in the browser.
 const TechScene = dynamic(() => import('@/components/three/TechScene').then((m) => m.TechScene), {
   ssr: false,
   loading: () => <div className="h-full w-full" aria-hidden />,
@@ -42,41 +42,50 @@ export function Hero() {
   });
 
   return (
-    <section id="top" className="hero-atmosphere pt-16">
-      <Container className="grid min-h-[calc(100svh-4rem)] items-center gap-4 py-10 lg:grid-cols-[1fr_1.05fr] lg:gap-8">
+    <section id="top" tabIndex={-1} className="hero-atmosphere pt-[var(--header-height)]">
+      <Container className="grid min-h-[calc(100svh-var(--header-height))] items-center gap-4 py-10 lg:grid-cols-[1fr_1.05fr] lg:gap-8">
         <div>
-          <h1 className="font-display text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="font-display text-4xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
             <RevealLine delay={0.1}>Rohit Singh</RevealLine>
             <RevealLine delay={0.2}>Rawat</RevealLine>
           </h1>
 
-          <motion.p {...fade(0.55)} className="mt-4 font-display text-xl text-accent md:text-2xl">
-            {profile.role}. {profile.headline}
-          </motion.p>
+          <motion.div {...fade(0.55)} className="mt-4">
+            <p className="font-display text-xl text-accent md:text-2xl">{profile.role}</p>
+            <p className="mt-3 max-w-lg text-sm font-medium leading-relaxed text-ink/85">
+              {profile.headline}
+            </p>
+          </motion.div>
 
-          <motion.p {...fade(0.7)} className="mt-6 max-w-md text-lg leading-relaxed text-muted">
+          <motion.p {...fade(0.7)} className="mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
             {profile.intro}
           </motion.p>
 
-          <motion.div {...fade(0.85)} className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href="#projects">View projects</ButtonLink>
+          <motion.div {...fade(0.85)} className="mt-7 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+            <ButtonLink href="#projects" className="col-span-2 sm:col-span-1">
+              View My Work
+            </ButtonLink>
             <ButtonLink
               href={profile.resume.href}
               download={profile.resume.fileName}
               variant="secondary"
+              className="px-3 sm:px-6"
               icon={<LuDownload size={16} aria-hidden />}
             >
-              Download resume
+              Download Resume
+            </ButtonLink>
+            <ButtonLink href="#contact" variant="secondary" className="px-3 sm:px-6">
+              Let&apos;s Connect
             </ButtonLink>
           </motion.div>
 
-          <motion.p {...fade(1)} className="mt-8 flex items-center gap-2 text-sm text-muted">
-            <span className="size-2 rounded-full bg-accent" aria-hidden />
+          <motion.p {...fade(1)} className="mt-6 flex items-start gap-2 text-sm leading-relaxed text-muted">
+            <span className="mt-1.5 size-2 shrink-0 rounded-full bg-accent" aria-hidden />
             {profile.availability}. Based in {profile.location}.
           </motion.p>
         </div>
 
-        <div className="relative h-[360px] sm:h-[440px] lg:h-[640px]" aria-hidden>
+        <div className="relative h-[280px] sm:h-[360px] lg:h-[560px]" aria-hidden>
           <TechScene />
         </div>
       </Container>

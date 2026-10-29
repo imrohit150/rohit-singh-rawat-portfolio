@@ -21,9 +21,10 @@ export interface ExperienceEntry {
   role: string;
   company: string;
   product: string;
+  employmentType: 'Full-time' | 'Internship';
   period: string;
   summary: string;
-  highlights: string[];
+  highlights: { title: string; description: string }[];
 }
 
 export interface ProjectLink {
@@ -33,8 +34,13 @@ export interface ProjectLink {
 
 export interface Project {
   id: string;
+  featured?: boolean;
+  ownership?: string;
   category: string;
   image: string;
+  imageAlt?: string;
+  imageCaption?: string;
+  note?: string;
   title: string;
   tagline: string;
   details: string[];
@@ -45,6 +51,9 @@ export interface Project {
 
 export interface SkillGroup {
   title: string;
+  description?: string;
+  primary?: boolean;
+  wide?: boolean;
   items: string[];
 }
 

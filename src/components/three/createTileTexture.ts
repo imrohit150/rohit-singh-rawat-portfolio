@@ -2,14 +2,14 @@ import * as THREE from 'three';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import {
-  SiFigma,
+  SiExpress,
   SiJavascript,
-  SiJest,
+  SiMongodb,
+  SiNodedotjs,
   SiNextdotjs,
   SiReact,
   SiReactquery,
   SiRedux,
-  SiTailwindcss,
   SiTypescript,
   SiVite,
 } from 'react-icons/si';
@@ -25,14 +25,14 @@ export function readRgbVar(name: string): string {
 const FONT_FAMILY = '"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif';
 
 const ICONS = {
-  figma: SiFigma,
+  express: SiExpress,
   javascript: SiJavascript,
-  jest: SiJest,
+  mongodb: SiMongodb,
+  nodejs: SiNodedotjs,
   next: SiNextdotjs,
   react: SiReact,
   reactquery: SiReactquery,
   redux: SiRedux,
-  tailwind: SiTailwindcss,
   typescript: SiTypescript,
   vite: SiVite,
 };

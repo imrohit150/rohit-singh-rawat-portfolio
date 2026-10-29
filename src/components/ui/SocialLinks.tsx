@@ -21,7 +21,7 @@ export function SocialLinks({
   className?: string;
 }) {
   return (
-    <ul className={cn(variant === 'icons' ? 'flex gap-2' : 'space-y-3', className)}>
+    <ul className={cn('flex flex-wrap gap-2', className)}>
       {socials.map((social) => {
         const Icon = icons[social.id];
         const external = !social.href.startsWith('mailto:');
@@ -33,11 +33,11 @@ export function SocialLinks({
               {...(external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
               className={
                 variant === 'icons'
-                  ? 'grid size-10 place-items-center rounded-full text-muted transition-colors hover:bg-surface hover:text-ink'
-                  : 'inline-flex items-center gap-3 text-muted transition-colors hover:text-ink'
+                  ? 'grid size-11 place-items-center rounded-full border border-line text-muted transition-colors hover:border-accent/40 hover:bg-surface hover:text-ink motion-reduce:transition-none'
+                  : 'inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-3 py-2 text-sm text-muted transition-colors hover:border-accent/40 hover:bg-surface hover:text-ink motion-reduce:transition-none'
               }
             >
-              <Icon size={variant === 'icons' ? 18 : 20} aria-hidden />
+              <Icon size={18} className="shrink-0" aria-hidden />
               {variant === 'labeled' ? <span>{social.label}</span> : null}
             </a>
           </li>

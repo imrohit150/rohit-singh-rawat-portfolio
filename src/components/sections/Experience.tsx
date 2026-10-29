@@ -2,95 +2,89 @@
 
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { TiltCard } from '../ui/TiltCard';
-import { Reveal } from '../ui/Reveal';
-import { experience } from '@/data/experience';
+import { TiltCard } from '@/components/ui/TiltCard';
+import { Reveal } from '@/components/ui/Reveal';
+import { experience, experienceCompany } from '@/data/experience';
 
 export function Experience() {
   return (
     <Section id="experience" className="border-y border-line hero-atmosphere">
-      <div>
-        <Reveal direction="up">
-          <SectionHeading
-            eyebrow="Career"
-            title={
-              <>
-                Where I&apos;ve <em className="text-accent">worked.</em>
-              </>
-            }
-          />
-        </Reveal>
+      <Reveal direction="up">
+        <SectionHeading
+          eyebrow="Career"
+          title={
+            <>
+              Where I&apos;ve <em className="text-accent">worked.</em>
+            </>
+          }
+        />
+      </Reveal>
 
-        <Reveal direction="zoom" delay={0.12} className="mt-10 md:mt-12">
-          <TiltCard className="overflow-hidden rounded-2xl border border-line bg-surface/60">
-          <div className="border-b border-line p-6 md:p-8">
-            <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-8">
+      <Reveal direction="up" delay={0.12} className="mt-10 md:mt-12">
+        <TiltCard className="overflow-hidden rounded-2xl border border-line bg-surface/60">
+          <div className="border-b border-line p-5 sm:p-6 md:p-8">
+            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-8">
               <div>
-                <p className="text-xs tracking-[0.08em] text-muted">Feb 2022 – Apr 2026 · Full journey</p>
-                <h3 className="mt-2 font-display text-2xl font-semibold md:text-3xl">
-                  Indarka Energy Pvt. Ltd.
+                <p className="text-xs tracking-wide text-muted">{experienceCompany.period}</p>
+                <h3 className="mt-2 font-display text-xl font-semibold sm:text-2xl md:text-3xl">
+                  {experienceCompany.name}
                 </h3>
-                <p className="mt-1 text-sm text-muted">Arka360 Platform · Global B2B Solar SaaS</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  <span className="font-medium text-ink">{experienceCompany.product}</span>
+                  {' · '}
+                  {experienceCompany.description}
+                </p>
               </div>
-              <div className="flex flex-wrap gap-2 md:max-w-xs md:justify-end">
-                <span className="rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
-                  4,000+ installers
-                </span>
-                <span className="rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
-                  27 countries
-                </span>
-              </div>
+              <ul aria-label="Arka360 platform reach" className="flex shrink-0 flex-wrap gap-2">
+                {experienceCompany.reach.map((metric) => (
+                  <li
+                    key={metric}
+                    className="rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+                  >
+                    {metric}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          <div>
-            {experience.map((entry, index) => (
-              <article
-                key={entry.id}
-                className={
-                  index === 0
-                    ? 'p-6 md:p-8'
-                    : 'grid gap-4 border-t border-line bg-bg/25 p-6 md:grid-cols-[9rem_1fr] md:gap-8 md:p-6'
-                }
-              >
-                {index === 0 ? (
-                  <>
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div>
-                        <h3 className="font-display text-xl font-semibold">{entry.role}</h3>
-                        <p className="mt-1 text-sm text-muted">{entry.period}</p>
-                      </div>
-                      <span className="rounded-full border border-line px-3 py-1 text-xs text-muted">
-                        Full-time
-                      </span>
+          <ol className="m-5 space-y-8 border-l border-line sm:m-6 md:m-8">
+            {experience.map((entry) => (
+              <li key={entry.id} className="relative pl-5 sm:pl-7">
+                <span
+                  aria-hidden
+                  className="absolute -left-[5px] top-1.5 size-2.5 rounded-full bg-accent ring-4 ring-surface"
+                />
+                <article aria-labelledby={`experience-${entry.id}`}>
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h4 id={`experience-${entry.id}`} className="font-display text-lg font-semibold sm:text-xl">
+                        {entry.role}
+                      </h4>
+                      <p className="mt-1 text-xs text-muted sm:text-sm">{entry.period}</p>
                     </div>
-                    <p className="mt-4 text-sm leading-relaxed">{entry.summary}</p>
-                    <ul className="mt-5 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/85 marker:text-accent">
+                    <span className="rounded-full border border-line px-3 py-1 text-xs text-muted">
+                      {entry.employmentType}
+                    </span>
+                  </div>
+                  <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink/85">{entry.summary}</p>
+
+                  {entry.highlights.length > 0 ? (
+                    <ul className="mt-5 grid gap-3 lg:grid-cols-2">
                       {entry.highlights.map((highlight) => (
-                        <li key={highlight}>{highlight}</li>
+                        <li key={highlight.title} className="rounded-xl border border-line bg-bg/30 p-4 sm:p-5">
+                          <h5 className="text-sm font-semibold text-ink">{highlight.title}</h5>
+                          <p className="mt-2 text-sm leading-relaxed text-muted">{highlight.description}</p>
+                        </li>
                       ))}
                     </ul>
-                  </>
-                ) : (
-                  <>
-                    <div>
-                      <p className="font-display text-sm font-semibold text-muted">{entry.period}</p>
-                      <span className="mt-2 inline-flex rounded-full border border-line px-3 py-1 text-xs text-muted">
-                        Internship
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg font-semibold">{entry.role}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted">{entry.summary}</p>
-                    </div>
-                  </>
-                )}
-              </article>
+                  ) : null}
+                </article>
+              </li>
             ))}
-          </div>
-          </TiltCard>
-        </Reveal>
-      </div>
+          </ol>
+        </TiltCard>
+      </Reveal>
     </Section>
   );
 }

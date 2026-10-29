@@ -1,36 +1,66 @@
 import type { ExperienceEntry } from '@/types';
 
-// Newest first.
-// TODO: add measurable results (bugs fixed, load-time gains, API calls removed)
-// once you have real numbers. Do not estimate without marking it with "~".
+export const experienceCompany = {
+  name: 'Indarka Energy Private Limited',
+  product: 'Arka360',
+  description: 'Global B2B solar SaaS platform',
+  period: 'Feb 2022 – Apr 2026',
+  reach: ['4,000+ installers', '27 countries'],
+};
+
+// Newest first. Use only confirmed contributions and metrics.
 export const experience: ExperienceEntry[] = [
   {
     id: 'sde',
     role: 'Software Development Engineer',
-    company: 'Indarka Energy Private Limited',
-    product: 'Arka360',
+    company: experienceCompany.name,
+    product: experienceCompany.product,
+    employmentType: 'Full-time',
     period: 'Aug 2022 – Apr 2026',
     summary:
-      'Core frontend engineer on Arka360, a global solar platform used by 4,000+ installers in 27 countries.',
+      'Core frontend engineer delivering complex workflows across the Arka360 platform, with ownership of major features and contributions to its React Native application.',
     highlights: [
-      'Built the Proposal Workflow, a validated multi-step flow that generates 20–25 page PDF proposals with pricing and financial projections.',
-      'Architected the Solar Calculator with real-time energy calculations, complex business logic and automated reports.',
-      'Owned pricing, financing, design defaults, organization, inventory and consumption modules with React, Redux Toolkit and Zustand.',
-      'Led a UI/UX revamp across major modules with responsive, cross-browser interfaces using Tailwind CSS and Shadcn/UI.',
-      'Contributed React Native workflows for ArkaGo, including organization management, lead management, REST integrations and i18n.',
-      'Improved performance through lazy loading, code splitting, memoization and API-call reduction.',
-      'Built resilient data flows with Axios and React Query, including loading states, error boundaries and optimistic updates.',
-      'Wrote Jest and React Testing Library tests while collaborating in Agile teams of 4–6 frontend engineers.',
+      {
+        title: 'Dynamic PDF proposal workflows',
+        description:
+          'Owned the frontend of an API-driven proposal workflow generating 20–25-page PDFs. Built conditional page rendering and custom DOM pagination using element heights, cloneNode and overflow handling, with export through html2canvas and html2pdf-ts.',
+      },
+      {
+        title: 'Solar Calculator',
+        description:
+          'Built interactive estimation workflows with real-time energy calculations, system sizing, complex business logic and API integrations, including automated report generation.',
+      },
+      {
+        title: 'Business-critical product modules',
+        description:
+          'Developed pricing and financing, design defaults, project configuration, organization, inventory and consumption workflows using React, TypeScript, Redux Toolkit and Zustand.',
+      },
+      {
+        title: 'Progressive UI modernization',
+        description:
+          'Led a UI migration with feature flags supporting legacy and redesigned interfaces. Reworked prop-based data flows into API-driven screens with centralized state, eliminating redundant API requests across the hybrid UI.',
+      },
+      {
+        title: 'ArkaGo mobile contributions',
+        description:
+          'Contributed organization management, lead management, REST API integrations and localization workflows in React Native. ArkaGo has 5K+ Google Play downloads.',
+      },
+      {
+        title: 'Performance, data flows and testing',
+        description:
+          'Applied lazy loading, code splitting and memoization; integrated APIs with Axios and React Query; and wrote Jest and React Testing Library component tests in an Agile team of 4–6 engineers.',
+      },
     ],
   },
   {
     id: 'intern',
     role: 'Frontend Developer Intern',
-    company: 'Indarka Energy Private Limited',
-    product: 'Arka360',
+    company: experienceCompany.name,
+    product: experienceCompany.product,
+    employmentType: 'Internship',
     period: 'Feb 2022 – Aug 2022',
     summary:
-      'Joined the Arka360 frontend team and earned a promotion to Software Development Engineer within six months.',
+      'Joined the Arka360 frontend team and progressed to Software Development Engineer within six months.',
     highlights: [],
   },
 ];

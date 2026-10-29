@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { profile } from '@/data/profile';
+import { site } from '@/data/site';
 import './globals.css';
 
 const display = Lora({
@@ -20,14 +21,28 @@ const body = Instrument_Sans({
   display: 'swap',
 });
 
-const title = `${profile.name} | ${profile.role}`;
-const description =
-  'Frontend engineer with 4+ years of experience in React, TypeScript and React Native. Built the proposal workflow and solar calculator on Arka360.';
-
 export const metadata: Metadata = {
-  title,
-  description,
-  openGraph: { title, description, type: 'website' },
+  metadataBase: new URL(site.url),
+  title: site.title,
+  description: site.description,
+  applicationName: `${profile.name} Portfolio`,
+  authors: [{ name: profile.name, url: site.url }],
+  creator: profile.name,
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: site.title,
+    description: site.description,
+    url: '/',
+    siteName: `${profile.name} Portfolio`,
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: site.title,
+    description: site.description,
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: site.previewAlt }],
+  },
 };
 
 export const viewport: Viewport = {
@@ -49,7 +64,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <ThemeProvider>
           <a
-            href="#about"
+            href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
           >
             Skip to content

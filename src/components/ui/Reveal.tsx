@@ -10,11 +10,15 @@ type Direction = 'left' | 'right' | 'up' | 'zoom';
 
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
+// Reset every transform when variants change across responsive breakpoints.
+// Otherwise a mobile zoom reveal can retain the desktop's horizontal offset.
+const visible = { opacity: 1, x: 0, y: 0, scale: 1 };
+const hidden = { opacity: 0, x: 0, y: 0, scale: 1 };
 const variants: Record<Direction, Variants> = {
-  left: { hidden: { opacity: 0, x: -48 }, visible: { opacity: 1, x: 0 } },
-  right: { hidden: { opacity: 0, x: 48 }, visible: { opacity: 1, x: 0 } },
-  up: { hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0 } },
-  zoom: { hidden: { opacity: 0, scale: 0.92 }, visible: { opacity: 1, scale: 1 } },
+  left: { hidden: { ...hidden, x: -24 }, visible },
+  right: { hidden: { ...hidden, x: 24 }, visible },
+  up: { hidden: { ...hidden, y: 20 }, visible },
+  zoom: { hidden: { ...hidden, scale: 0.98 }, visible },
 };
 
 export function Reveal({
@@ -46,13 +50,12 @@ export function Reveal({
 
   return (
     <motion.div
-      key={activeDirection}
-      className={cn(className)}
+      className={cn('min-w-0', className)}
       initial={reduced ? false : 'hidden'}
       whileInView={screenSizeReady ? 'visible' : undefined}
       viewport={{ once: true, amount: 0.18 }}
       variants={variants[activeDirection]}
-      transition={{ duration: 0.75, delay: delay + 0.12, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>

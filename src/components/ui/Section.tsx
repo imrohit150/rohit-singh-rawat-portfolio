@@ -12,7 +12,7 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} className={cn('scroll-mt-16 py-20 md:py-28', className)}>
+    <section id={id} tabIndex={-1} className={cn('scroll-mt-6 py-14 sm:py-20 lg:py-24', className)}>
       <Container>{children}</Container>
     </section>
   );

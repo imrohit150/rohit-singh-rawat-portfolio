@@ -2,16 +2,37 @@ import type { SkillGroup } from '@/types';
 
 export const skills: SkillGroup[] = [
   {
-    title: 'React ecosystem',
-    items: ['React 18/19', 'React Native', 'React Hooks', 'Custom Hooks', 'React Router', 'Redux Toolkit', 'Zustand', 'React Query'],
+    title: 'Frontend development',
+    primary: true,
+    description: 'My core specialization across professional SaaS products and personal projects.',
+    items: ['React.js', 'Next.js', 'Vue.js', 'React Native', 'Tailwind CSS', 'shadcn/ui'],
   },
-  { title: 'Languages', items: ['JavaScript (ES6+)', 'TypeScript', 'HTML5', 'CSS3', 'SASS/SCSS'] },
   {
-    title: 'UI engineering',
-    items: ['Tailwind CSS', 'Shadcn/UI', 'Responsive design', 'Cross-browser compatibility', 'i18n / localization'],
+    title: 'Languages',
+    items: ['JavaScript (ES6+)', 'TypeScript', 'HTML5', 'CSS3', 'SCSS'],
   },
-  { title: 'Data and product engineering', items: ['REST APIs', 'Axios', 'Fetch API', 'PDF report generation', 'Business logic'] },
-  { title: 'Frameworks', items: ['Next.js', 'Vue.js'] },
-  { title: 'Testing and tooling', items: ['Jest', 'React Testing Library', 'Vite', 'ESLint', 'Prettier', 'Git and GitHub', 'Figma', 'Agile / Scrum'] },
-  { title: 'AI tools', items: ['Claude', 'ChatGPT', 'GitHub Copilot', 'Windsurf'] },
+  {
+    title: 'State management and data fetching',
+    items: ['Redux Toolkit', 'Zustand', 'Context API', 'TanStack React Query', 'Axios'],
+  },
+  {
+    title: 'Backend and database',
+    description: 'Applied in SkillConnect, my independently built and deployed full-stack project.',
+    items: ['Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'REST APIs', 'Socket.IO', 'JWT Authentication'],
+  },
+  {
+    title: 'Testing',
+    items: ['Jest', 'React Testing Library'],
+  },
+  {
+    title: 'Tools and platforms',
+    items: ['Git', 'GitHub', 'Vite', 'Figma', 'Cloudinary', 'Vercel', 'Render', 'ESLint', 'Prettier'],
+  },
+  {
+    title: 'Additional engineering skills',
+    wide: true,
+    items: ['Responsive Design', 'Performance Optimization', 'PDF Generation', 'API Integration', 'i18n', 'Cross-browser Compatibility', 'Agile / Scrum'],
+  },
 ];
+
+export const aiTools = ['Claude', 'ChatGPT', 'GitHub Copilot', 'Windsurf'];
